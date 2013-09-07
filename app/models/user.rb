@@ -7,13 +7,15 @@ class User < ActiveRecord::Base
 
   # DONT KNOW HOW TO DO THE BELOW:
   def proficiency_for(inputted_skill)
-      Ranking.create(proficiency_rating: 0)
-
+      var = self.skills.find(inputted_skill).id
+      Rating.find_by_skill_id(var).proficiency_rating
   end
 
   def set_proficiency_for(inputted_skill, level)
-    
-    
+    var = self.ratings.find_by_skill_id(inputted_skill.id)
+    var.proficiency_rating = level
+    var.save
+          
   end
 end
 
